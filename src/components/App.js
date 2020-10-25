@@ -13,21 +13,16 @@ class App extends React.Component {
     console.log(this.state);
     this.renderChoice = this.renderChoice.bind(this);
     this.buttonClickHandler = this.buttonClickHandler.bind(this);
-    this.handelKeyDown = this. handelKeyDown.bind(this);
-
-}
+    this.handelKeyDown = this.handelKeyDown.bind(this);
+  }
 
   //call back function
   buttonClickHandler() {
-
-
     //console.log("buttonClicked");
-    let stateCopy = {...this.state};
+    let stateCopy = { ...this.state };
     let renderBallCopy = stateCopy.renderBall;
 
-    this.setState({renderBall: !renderBallCopy});
-
-
+    this.setState({ renderBall: !renderBallCopy });
   }
   renderChoice() {
     if (this.state.renderBall) {
@@ -38,24 +33,22 @@ class App extends React.Component {
       );
   }
 
-  handelKeyDown(event){
-
+  handelKeyDown(event) {
     // keyCode:39
-    if(event.keyCode === 39){
+    if (event.keyCode === 39) {
+      let newPosition = this.state.posi + 5;
 
-        //console.log("keyDown event called");
-        this.setState({ballPosition:{left : "5px"}});
-        //console.log(this.state);
-
+      this.setState({
+        posi: newPosition,
+        ballPosition: { left: `${newPosition}px` }
+      });
+      //console.log(this.state);
     }
-
   }
 
   //bind ArrowRight keydown event
   componentDidMount() {
-
     window.addEventListener("keydown", this.handelKeyDown);
-
   }
 
   render() {
